@@ -1,16 +1,12 @@
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Middleware do obsługi statycznych plików (np. HTML, CSS, JS)
-app.use(express.static('public'));
-
-// Prosty endpoint API na backendzie
-app.get('/api/hello', (req, res) => {
-    res.json({ message: 'Hello World!' });
+app.get('/', (req, res) => {
+  const currentTime = new Date().toLocaleString(); // Pobranie aktualnego czasu
+  res.send(`Kocham Cię! Lukasiak podaje czas - aktualny czas: ${currentTime}`); // Wysłanie odpowiedzi z komunikatem i czasem
 });
 
-// Serwer nasłuchuje na porcie 3000
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Serwer działa na porcie ${PORT}`);
 });
